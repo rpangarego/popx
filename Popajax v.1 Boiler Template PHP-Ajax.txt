@@ -1,0 +1,13 @@
+Popajax (POPX) v.1 Boiler Template PHP-Ajax
+
+Upcoming update:
+	- Chaining Tables (Join tables) 				= DONE
+	- Report Feature (MPDF)							= DONE
+	- Upload image form 							= DONE
+	- Update view UI 								= 
+	- Login view + logic w/ ajax checking (3 role) 	= 
+	- Review code & refactoring 					= 
+
+	: login 
+		- 3 role (admin, headmaster, student)
+
