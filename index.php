@@ -23,9 +23,6 @@
             <div id="content">
                 <?php
                     require './inc/functions.php';
-                    // check db connection
-                    // check_db_conn();
-
                     $module = (isset($_GET['m'])) ? $_GET['m'] : false ;
 
                     if($module){
