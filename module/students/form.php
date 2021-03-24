@@ -9,7 +9,7 @@
     
     $id = (!empty($result->id)) ? $result->id : '';
     $full_name = (!empty($result->full_name)) ? $result->full_name : '';
-    $birth_date = (!empty($result->birth_date)) ? $result->birth_date : '';
+    $birth_date = (!empty($result->birth_date)) ? date("Y-m-d", strtotime($result->birth_date)) : '';
     $birth_place = (!empty($result->birth_place)) ? $result->birth_place : '';
 
     $gender = (!empty($result->gender)) ? $result->gender : '';
@@ -80,8 +80,8 @@
         <tr>
             <td></td>
             <td>
-                <input type="submit" name="simpan" id="simpan" value="Simpan" />
-                <button type="button" id="cancel-button">Batal</button>
+                <button type="submit" name="simpan" id="simpan" class="btn btn-primary">Save</button>
+                <button type="button" id="cancel-button" class="btn btn-secondary" >Cancel</button>
             </td>
         </tr>
     </table>

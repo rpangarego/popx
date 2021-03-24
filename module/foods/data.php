@@ -1,6 +1,7 @@
-<button id="add-button" class="btn btn-primary">New Data</button>
-<br>
-<br>
+<div class="buttons mb-4 d-flex justify-content-end">
+    <button id="add-button" class="btn btn-primary  mr-3">New Data</button>
+</div>
+
 <table border="1" cellspacing="0" cellpadding="0" id="data-table">
     <thead>
         <tr>
@@ -26,8 +27,8 @@
             <td><?= $food->category; ?></td>
             <td><?= 'Rp. '.$food->price; ?></td>
             <td>
-                <button id="edit-button" data-id="<?= $food->id; ?>">Edit</button>
-                <button id="delete-button" data-id="<?= $food->id; ?>" data-action="foods_hapus">Delete</button>
+                <button id="edit-button" class="btn btn-sm btn-warning" data-id="<?= $food->id; ?>">Edit</button>
+                <button id="delete-button" class="btn btn-sm btn-danger" data-id="<?= $food->id; ?>" data-action="foods_hapus">Delete</button>
             </td>
         </tr>
 

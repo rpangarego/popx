@@ -4,7 +4,7 @@ Upcoming update:
 	- Chaining Tables (Join tables) 				= DONE
 	- Report Feature (MPDF)							= DONE
 	- Upload image form 							= DONE
-	- Update view UI 								= 
+	- Update view UI 								= DONE
 	- Login view + logic w/ ajax checking (3 role) 	= 
 	- Review code & refactoring 					= 
 

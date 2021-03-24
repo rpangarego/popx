@@ -1,8 +1,8 @@
-<button id="add-button" class="btn btn-primary">New Data</button>
-<button id="print-report" class="btn btn-secondary" onclick="window.open('print_report');">Print</button>
+<div class="buttons mb-4 d-flex justify-content-end">
+    <button id="add-button" class="btn btn-primary  mr-3">New Data</button>
+    <button id="print-report" class="btn btn-secondary" onclick="window.open('print_report');">Print</button>
+</div>
 
-<br>
-<br>
 <table border="1" cellspacing="0" cellpadding="5px" id="data-table">
     <thead>
         <tr>
@@ -34,8 +34,8 @@
             <td><?= $student->major; ?></td>
             <td><?= "[$student->category] $student->menu"; ?></td>
             <td>
-                <button id="edit-button" data-id="<?= $student->id; ?>">Edit</button>
-                <button id="delete-button" data-id="<?= $student->id; ?>" data-action="students_hapus">Delete</button>
+                <button id="edit-button" class="btn btn-sm btn-warning" data-id="<?= $student->id; ?>">Edit</button>
+                <button id="delete-button" class="btn btn-sm btn-danger" data-id="<?= $student->id; ?>" data-action="students_hapus">Delete</button>
             </td>
         </tr>
 

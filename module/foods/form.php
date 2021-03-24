@@ -43,8 +43,8 @@
         <tr>
             <td></td>
             <td>
-                <input type="submit" name="simpan" id="simpan" value="Simpan" />
-                <button type="button" id="cancel-button">Batal</button>
+                <button type="submit" name="simpan" id="simpan" class="btn btn-primary">Save</button>
+                <button type="button" id="cancel-button" class="btn btn-secondary" >Cancel</button>
             </td>
         </tr>
     </table>

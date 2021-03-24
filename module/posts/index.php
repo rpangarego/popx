@@ -1,4 +1,4 @@
-<h3>Posts</h3>
+<h1>Posts</h1>
 <div class="alert-container"></div>
 
 <div id="content-data"></div>

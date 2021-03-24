@@ -1,4 +1,4 @@
-<h3>Foods</h3>
+<h1>Foods</h1>
 <div class="alert-container"></div>
 
 <div id="content-data"></div>

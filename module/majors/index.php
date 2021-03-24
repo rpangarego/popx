@@ -1,4 +1,4 @@
-<h3>Majors</h3>
+<h1>Majors</h1>
 <div class="alert-container"></div>
 
 <div id="content-data"></div>

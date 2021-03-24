@@ -14,10 +14,10 @@ $(document).ready(function() {
         loadForm(e);
     });
 
-    //button batal
+    //button cancel
     $("#content-data").on("click", "#cancel-button", loadData);
 
-    //simpan data 
+    //save data 
     $("#content-data").on("submit", "#form", function(e) {
         e.preventDefault();
         var action = e.target.dataset.formStatus;
@@ -35,14 +35,13 @@ $(document).ready(function() {
             type: 'post',
             data: $(this).serialize() + '&image_url='+imageUrl,
             success: function(data) {
-                // alert(data);
                 loadData();
                 showAlert(data);
             }
         });
     });
 
-    //hapus data berdasarkan id
+    //delete data based on id
     $("#content-data").on("click", "#delete-button", function(e) {
         var id = e.target.dataset.id;
         var action = e.target.dataset.action;
@@ -112,7 +111,6 @@ function generateNewFilename(extension){
     for ( var i = 0; i < 30; i++ ) {
         result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-
     return result+'.'+extension;
 }
 
@@ -135,10 +133,10 @@ function uploadFileImage(){
                 cache: false,
                 processData: false,
                 contentType: false,
-                success: function (data) {
+                success: function(data) {
                     alert(data);
                 },
-                error: function () {
+                error: function() {
                     alert("Failed to upload file");
                 }
             });
@@ -150,8 +148,14 @@ function uploadFileImage(){
 
 function showAlert(message){
     var alert = `<div class="alert" style="width:50%; background-color: pink; padding: 10px; margin-bottom: 2rem; border-radius: 6px; ">${message}</div>`;
-    $('.alert-container').html(alert);
-    document.querySelector('.alert-container>.alert').addEventListener('click', clearAlert);
+    var bootstrapAlert = `<div class="alert alert-success alert-dismissible fade show" role="alert">
+    ${message}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>`;
+    $('.alert-container').html(bootstrapAlert);
+    // document.querySelector('.alert-container>.alert').addEventListener('click', clearAlert);
 }
 
 function clearAlert(){

@@ -24,6 +24,12 @@ class DB{
         }
         return $arr;
     }
+
+    public function count_results($sql){
+        $query = $this->get_results($sql);
+        $total_data = count($query);
+        return $total_data;
+    }
     
     public function get_var($sql){
         $query = $this->query($sql);
