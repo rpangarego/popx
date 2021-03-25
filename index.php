@@ -22,7 +22,7 @@
                 <a href="index?m=students">Students</a>
                 <a href="index?m=majors">Majors</a>
                 <a href="index?m=about">About</a>
-                <a href="actions?action=logout">Logout</a>
+                <a href="actions?action=logout">Logout (<?= ucwords($_SESSION['username']) ?>)</a>
             </div>
 
             <div id="content">
