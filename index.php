@@ -1,3 +1,7 @@
+<?php require './inc/functions.php';
+    if (!isset($_SESSION['userid'])) redirect_js('login');
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,11 +22,11 @@
                 <a href="index?m=students">Students</a>
                 <a href="index?m=majors">Majors</a>
                 <a href="index?m=about">About</a>
+                <a href="actions?action=logout">Logout</a>
             </div>
 
             <div id="content">
                 <?php
-                    require './inc/functions.php';
                     $module = (isset($_GET['m'])) ? $_GET['m'] : false ;
 
                     if($module){

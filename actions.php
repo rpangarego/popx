@@ -3,6 +3,37 @@ require "inc/functions.php";
 
 switch ($_GET['action']){
 
+    // LOGIN
+    case 'check_login':
+        $username	= $_POST['username'];
+        $password	= $_POST['password'];
+        
+        $result = $db->get_row("SELECT * FROM users WHERE username='$username' AND password='$password'");
+
+        if ($result) {
+            $_SESSION['userid']     = $result->id;
+            $_SESSION['username']   = $result->username;
+            $_SESSION['password']   = $result->password;
+            $_SESSION['status']     = $result->status;
+
+            // true = login successfully (redirect to index)
+            echo true;
+        } else {
+            echo false;
+        }
+    break;
+
+    // LOGOUT
+    case 'logout':
+        $_SESSION['userid']     = null;
+        $_SESSION['username']   = null;
+        $_SESSION['password']   = null;
+        $_SESSION['status']     = null;
+        session_destroy();
+        
+        redirect_js('login');
+        break;
+
     // UPLOAD IMAGE
     case 'upload_image':
         $temp = "images/upload/";
