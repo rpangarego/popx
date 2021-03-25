@@ -45,7 +45,7 @@ function print_error($msg){
 }
 
 function tgl_indo($date){
-    $tanggal = split('-', $date);
+    $tanggal = explode('-', $date);
     
     $array_bulan = array( 1=>'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
     $bulan = $array_bulan[$tanggal[1]*1];
@@ -72,4 +72,17 @@ function terbilang($x)
     return terbilang($x / 1000) . " ribu" . terbilang($x % 1000);
   elseif ($x < 1000000000)
     return terbilang($x / 1000000) . " juta" . terbilang($x % 1000000);
+}
+
+function generate_token(){
+  $token = time().'_'.uniqid().'_'.rand(10000,99999);
+  return $token;
+}
+
+function check_token($user_token){
+  if ($_SESSION['token']==$user_token) {
+    return true;
+  } else {
+    return false;
+  }
 }

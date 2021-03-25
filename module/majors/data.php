@@ -25,7 +25,7 @@
             <td><?= $major->major; ?></td>
             <td>
                 <button id="edit-button" data-id="<?= $major->id; ?>">Edit</button>
-                <button id="delete-button" data-id="<?= $major->id; ?>" data-action="majors_hapus">Delete</button>
+                <button id="delete-button" data-id="<?= $major->id; ?>" data-action="majors_hapus" data-token="<?= $_SESSION['token'] ?>">Delete</button>
             </td>
         </tr>
     <?php endforeach;

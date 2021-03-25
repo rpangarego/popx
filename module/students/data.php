@@ -35,7 +35,7 @@
             <td><?= "[$student->category] $student->menu"; ?></td>
             <td>
                 <button id="edit-button" data-id="<?= $student->id; ?>">Edit</button>
-                <button id="delete-button" data-id="<?= $student->id; ?>" data-action="students_hapus">Delete</button>
+                <button id="delete-button" data-id="<?= $student->id; ?>" data-action="students_hapus" data-token="<?= $_SESSION['token'] ?>">Delete</button>
             </td>
         </tr>
 

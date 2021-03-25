@@ -27,10 +27,9 @@
             <td><?= 'Rp. '.$food->price; ?></td>
             <td>
                 <button id="edit-button" data-id="<?= $food->id; ?>">Edit</button>
-                <button id="delete-button" data-id="<?= $food->id; ?>" data-action="foods_hapus">Delete</button>
+                <button id="delete-button" data-id="<?= $food->id; ?>" data-action="foods_hapus" data-token="<?= $_SESSION['token'] ?>">Delete</button>
             </td>
         </tr>
-
     <?php endforeach;
     else: ?>
         <tr>

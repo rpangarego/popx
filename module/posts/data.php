@@ -29,7 +29,7 @@
             <td><?= $post->created_at; ?></td>
             <td>
                 <button id="edit-button" data-id="<?= $post->id; ?>">Edit</button>
-                <button id="delete-button" data-id="<?= $post->id; ?>" data-action="posts_hapus">Delete</button>
+                <button id="delete-button" data-id="<?= $post->id; ?>" data-action="posts_hapus" data-token="<?= $_SESSION['token'] ?>">Delete</button>
             </td>
         </tr>
 

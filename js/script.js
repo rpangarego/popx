@@ -32,40 +32,39 @@ $(document).ready(function() {
     $("#content-data").on("submit", "#form", function(e) {
         e.preventDefault();
         var action = e.target.dataset.formStatus;
-        // var formModule = e.target.dataset.formModule;
-        // var formAction = e.target.dataset.formAction;
         var imageUrl = '';
 
         if (fileImage !== undefined && fileImage !== null) {
             imageUrl = uploadFileImage();
         }
 
-        // action (<modul>_tambah/<modul>_edit) -> actions.php?action=<modul>_tambah
+        // action (<modul>_tambah/<modul>_edit) -> ex: actions.php?action=<modul>_tambah
         $.ajax({
             url: 'actions.php?action='+action,
             type: 'post',
             data: $(this).serialize() + '&image_url='+imageUrl,
             success: function(data) {
-                // alert(data);
                 loadData();
                 showAlert(data);
             }
         });
     });
 
-    //hapus data berdasarkan id
+    //delete data based on id
     $("#content-data").on("click", "#delete-button", function(e) {
-        var id = e.target.dataset.id;
-        var action = e.target.dataset.action;
+        var id      = e.target.dataset.id;
+        var action  = e.target.dataset.action;
+        var token   = e.target.dataset.token
         var confirmDelete = confirm("Hapus data id " + id + "?");
-        var urlAction = 'actions.php?action=' + action;
+        var urlAction     = 'actions.php?action=' + action;
 
         if (confirmDelete) {
             $.ajax({
                 url: urlAction,
                 type: 'post',
                 data: {
-                    id: id
+                    id: id,
+                    token: token
                 },
                 success: function(data) {
                     loadData();
@@ -113,7 +112,7 @@ function checkLoginCredentials() {
             if (res == 1){ // 1 = true
                 window.location.href = "index";
             } else {
-                showAlert("Username atau password salah.");
+                showAlert("Username or password wrong!");
                 disabledButton(false);
                 passwordTxt.value = "";
                 passwordTxt.focus();

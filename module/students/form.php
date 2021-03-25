@@ -19,7 +19,8 @@
     $image_url = (!empty($result->image_url)) ? $result->image_url : '';
 ?>
 
-<form method="POST" id="form" data-form-status='<?= $_GET['form_status'] ?>' data-module='<?= $_GET['module'] ?>' data-form-action='<?= $_GET['form_action'] ?>'>
+<form method="POST" id="form" data-form-status='<?= $_GET['form_status'] ?>'>
+    <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
     <table>
         <tr>
             <td>Full Name</td>

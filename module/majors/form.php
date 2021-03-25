@@ -16,6 +16,7 @@
 ?>
 
 <form method="POST" id="form" data-form-status='<?= $_GET['form_status'] ?>'>
+    <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
     <table>
         <tr>
             <td>Major Code</td>
