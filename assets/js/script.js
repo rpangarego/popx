@@ -1,7 +1,18 @@
 var fileImage;
+var usernameTxt;
+var passwordTxt;
+var loginForm;
+var btnLogin;
 
 $(document).ready(function() {
-    loadData();
+    pathLink = window.location.pathname.split('/');
+    mainPath = pathLink[pathLink.length-1];
+
+    if (mainPath === 'login') {
+        login();
+    } else {
+        loadData();
+    }
 
     //load form
     $("#content-data").on("click", "#add-button", function(e){
@@ -63,6 +74,55 @@ $(document).ready(function() {
         }
     });
 })
+
+function login() {
+    usernameTxt = document.getElementById('username');
+    passwordTxt = document.getElementById('password');
+    loginForm   = document.getElementById('login-form');
+    btnLogin    = document.getElementById('btn-login');
+
+    loginForm.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        console.log('submitted');
+        checkLoginCredentials();
+    })
+}
+
+function checkLoginCredentials() {
+    username = usernameTxt.value;
+    password = passwordTxt.value;
+
+    if (!username || !password){
+        showAlert("Username and password must be filled!", "danger");
+        disabledButton(false);
+      
+        if (!username) {
+            usernameTxt.focus();
+        } else if (!password) {
+            passwordTxt.focus();
+        }
+        return false;
+    }
+
+    $.ajax({
+        type	: "POST",
+        url		: "actions.php?action=check_login",
+        data	: "username="+username+
+                  "&password="+password,
+        success	: function(res){
+            if (res == 1){ // 1 = true
+                showAlert("Login successfully!", "success");
+                window.location.href = "index";
+            } else {
+                showAlert("Username or password wrong!", "danger");
+                disabledButton(false);
+                passwordTxt.value = "";
+                passwordTxt.focus();
+            }
+        }
+    });
+}
+
 
 function loadData() {
     var pathname    = window.location.href;
@@ -146,9 +206,19 @@ function uploadFileImage(){
     return '';    
 }
 
-function showAlert(message){
+function disabledButton(state){ //status (true:show / false:hide)
+    if (state) {
+        btnLogin.classList.add('disabled');
+        btnLogin.setAttribute('disabled','true');
+    } else {
+        btnLogin.classList.remove('disabled');
+        btnLogin.removeAttribute('disabled');
+    }
+}
+
+function showAlert(message, style='info'){
     var alert = `<div class="alert" style="width:50%; background-color: pink; padding: 10px; margin-bottom: 2rem; border-radius: 6px; ">${message}</div>`;
-    var bootstrapAlert = `<div class="alert alert-success alert-dismissible fade show" role="alert">
+    var bootstrapAlert = `<div class="alert alert-${style} alert-dismissible fade show" role="alert">
     ${message}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>

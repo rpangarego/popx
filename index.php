@@ -1,3 +1,7 @@
+<?php require './inc/functions.php';
+    if (!isset($_SESSION['userid'])) redirect_js('login');
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -65,7 +69,7 @@
                         <img alt="Image placeholder" src="images/team-4.jpg">
                     </span>
                     <div class="media-body  ml-2  d-none d-lg-block">
-                        <span class="mb-0 text-sm font-weight-bold">Popcorn</span>
+                        <span class="mb-0 text-sm font-weight-bold"><?= ucwords($_SESSION['username'])?></span>
                     </div>
                     </div>
                 </a>
@@ -82,7 +86,7 @@
                     <span>Settings</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#!" class="dropdown-item">
+                    <a href="actions?action=logout" class="dropdown-item">
                     <i class="ni ni-user-run"></i>
                     <span>Logout</span>
                     </a>

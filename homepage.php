@@ -1,3 +1,2 @@
-<h3>Annyeonghaseyo!</h3>
-
-
+<h3 class="text-center">Annyeonghaseyo!</h3>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea numquam repellat placeat deleniti, odio fugit, doloremque ut mollitia nulla sed commodi minus. Autem eos, expedita beatae iste atque rem voluptatem.</p>

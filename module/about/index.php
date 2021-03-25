@@ -3,5 +3,5 @@
 
 <div id="content-data">
     <p><b>PopX</b> is a simple "framework" (maybe) build with PHP and Ajax Jquery. 
-    <br> Created by <b>Popcorn</b> (Ronaldo Pangarego)</p>
+    <br> Created and Developed by <b>Popcorn</b> (Ronaldo Pangarego)</p>
 </div>

@@ -1,8 +1,7 @@
-  <!-- Header -->
-  <div class="header bg-primary d-flex align-items-center pt-3">
+<!-- Header -->
+<div class="header bg-primary d-flex align-items-center pt-3">
 
 <?php
-    require 'inc/functions.php';
     $posts_total = $db->count_results("SELECT id FROM posts");
     $students_total = $db->count_results("SELECT id FROM students");
     $foods_total = $db->count_results("SELECT id FROM foods");

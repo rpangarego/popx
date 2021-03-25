@@ -5,7 +5,7 @@ Upcoming update:
 	- Report Feature (MPDF)							= DONE
 	- Upload image form 							= DONE
 	- Update view UI 								= DONE
-	- Login view + logic w/ ajax checking (3 role) 	= 
+	- Login view + logic w/ ajax checking (3 role) 	= DONE
 	- Review code & refactoring 					= 
 
 	: login 
