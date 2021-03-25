@@ -1,4 +1,4 @@
-<?php 
+<?php
 	ob_start();
 	require_once 'inc/functions.php';
 	require_once 'vendor/autoload.php';

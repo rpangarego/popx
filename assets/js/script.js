@@ -32,8 +32,6 @@ $(document).ready(function() {
     $("#content-data").on("submit", "#form", function(e) {
         e.preventDefault();
         var action = e.target.dataset.formStatus;
-        // var formModule = e.target.dataset.formModule;
-        // var formAction = e.target.dataset.formAction;
         var imageUrl = '';
 
         if (fileImage !== undefined && fileImage !== null) {
@@ -46,17 +44,21 @@ $(document).ready(function() {
             type: 'post',
             data: $(this).serialize() + '&image_url='+imageUrl,
             success: function(data) {
+                var message = data.split('_')[0];
+                var alertStyle = data.split('_')[1];
+
                 loadData();
-                showAlert(data);
+                showAlert(message,alertStyle);
             }
         });
     });
 
     //delete data based on id
     $("#content-data").on("click", "#delete-button", function(e) {
-        var id = e.target.dataset.id;
-        var action = e.target.dataset.action;
-        var confirmDelete = confirm("Hapus data id " + id + "?");
+        var id      = e.target.dataset.id;
+        var action  = e.target.dataset.action;
+        var token   = e.target.dataset.token;
+        var confirmDelete = confirm("Delete data ID: " + id + "?");
         var urlAction = 'actions.php?action=' + action;
 
         if (confirmDelete) {
@@ -64,11 +66,15 @@ $(document).ready(function() {
                 url: urlAction,
                 type: 'post',
                 data: {
-                    id: id
+                    id: id,
+                    token: token
                 },
                 success: function(data) {
+                    var message = data.split('_')[0];
+                    var alertStyle = data.split('_')[1];
+
                     loadData();
-                    showAlert(data);
+                    showAlert(message,alertStyle);
                 }
             });
         }
@@ -83,7 +89,6 @@ function login() {
 
     loginForm.addEventListener('submit', (e)=>{
         e.preventDefault();
-        console.log('submitted');
         checkLoginCredentials();
     })
 }
@@ -122,7 +127,6 @@ function checkLoginCredentials() {
         }
     });
 }
-
 
 function loadData() {
     var pathname    = window.location.href;

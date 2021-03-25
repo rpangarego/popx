@@ -30,7 +30,7 @@
             <td><?= $post->created_at; ?></td>
             <td width='120'>
                 <button id="edit-button" class="btn btn-sm btn-warning" data-id="<?= $post->id; ?>">Edit</button>
-                <button id="delete-button" class="btn btn-sm btn-danger" data-id="<?= $post->id; ?>" data-action="posts_hapus">Delete</button>
+                <button id="delete-button" class="btn btn-sm btn-danger" data-id="<?= $post->id; ?>" data-action="posts_hapus" data-token="<?= $_SESSION['token'] ?>">Delete</button>
             </td>
         </tr>
 

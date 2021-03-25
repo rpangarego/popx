@@ -28,7 +28,7 @@
             <td><?= 'Rp. '.$food->price; ?></td>
             <td>
                 <button id="edit-button" class="btn btn-sm btn-warning" data-id="<?= $food->id; ?>">Edit</button>
-                <button id="delete-button" class="btn btn-sm btn-danger" data-id="<?= $food->id; ?>" data-action="foods_hapus">Delete</button>
+                <button id="delete-button" class="btn btn-sm btn-danger" data-id="<?= $food->id; ?>" data-action="foods_hapus" data-token="<?= $_SESSION['token'] ?>">Delete</button>
             </td>
         </tr>
 

@@ -20,6 +20,7 @@
 ?>
 
 <form method="POST" id="form" data-form-status='<?= $_GET['form_status'] ?>' data-module='<?= $_GET['module'] ?>' data-form-action='<?= $_GET['form_action'] ?>'>
+    <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
     <table>
         <tr>
             <td>Full Name</td>
