@@ -2,7 +2,7 @@
 require "../../inc/functions.php";
 if ($_SESSION['status']!=3) { ?> <!-- 1 = admin | 2 = headmaster | 3 = students -->
     <button id="add-button" class="btn btn-primary">New Data</button>
-    <button id="print-report" class="btn btn-secondary" onclick="window.open('print_report');">Print</button>
+    <button id="print-report" class="btn btn-secondary" onclick="window.open('inc/reports/print_report');">Print</button>
 <?php } ?>
 
 <br>

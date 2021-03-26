@@ -6,10 +6,10 @@
 <html>
     <head>
         <title>Popcorn - Ajax</title>
-        <link rel="stylesheet" href="css/jquery.dataTables.min.css">
-        <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
-        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
+        <link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="assets/js/jquery-3.6.0.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="assets/js/script.js"></script>
     </head>
 
     <body>
@@ -46,11 +46,11 @@
                         if (file_exists($module_file)) {
                             include $module_file;
                         }else{
-                            include "page404.php";
+                            include "inc/partials/page404.php";
                         }
 
                     } else {
-                        include "homepage.php";
+                        include "inc/partials/homepage.php";
                     }
                 ?>
             </div>

@@ -1,4 +1,4 @@
-<?php require 'inc/functions.php' ?>
+<?php require '../functions.php' ?>
 
 <h3 align="center">Print Students Data Report</h3>
 <br><br>
@@ -47,5 +47,5 @@
 <hr>
 <div id="preview-data"></div>
 
-<script src="./js/jquery-3.6.0.js"></script>
-<script src="./js/script.js"></script>
+<script src="../../assets/js/jquery-3.6.0.js"></script>
+<script src="../../assets/js/script.js"></script>
