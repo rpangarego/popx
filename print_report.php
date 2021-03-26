@@ -31,7 +31,7 @@
                         <div class="col-md-12 col-lg-4">
                         <div class="form-group">
                             <label for="student">Student</label>
-                            <select name="students" id="students" class="custom-select">
+                            <select name="student" id="student" class="custom-select">
                                 <option value="all">All</option>
                                 <?= getStudentOptions() ?>
                             </select>
@@ -62,14 +62,21 @@
                     <div class="row">
                         <div class="col-12 d-flex justify-content-end">
                         <button class="btn btn-secondary" onclick="window.close()">Close</button>
+                        <button type="button" id="preview-report" class="btn btn-secondary">Preview</button>
                         <button type="submit" id="print-report" class="btn btn-primary">Print</button>
                         </div>
                     </div>
                 </form>
                     
+                <hr>
+                <div id="preview-data"></div>
+
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="./assets/js/jquery-3.6.0.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
