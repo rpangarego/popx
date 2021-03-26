@@ -1,7 +1,7 @@
 <?php
 	ob_start();
-	require_once 'inc/functions.php';
-	require_once 'vendor/autoload.php';
+	require_once '../functions.php';
+	require_once '../../vendor/autoload.php';
 
     $where = [];
 

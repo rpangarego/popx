@@ -32,7 +32,7 @@
             </a>
         </div>
         <div class="navbar-inner">
-            <?php include 'sidebar.php'; ?>
+            <?php include 'inc/partials/sidebar.php'; ?>
         </div>
     </nav>
 
@@ -98,7 +98,7 @@
         </nav>
        <?php
             if (!isset($_GET['m'])) {
-                include 'header.php'; 
+                include 'inc/partials/header.php'; 
             }
         ?>
 
@@ -114,7 +114,7 @@
                             if (file_exists($module_file)) {
                                 include $module_file;
                             }else{
-                                include "page404.php";
+                                include "inc/partials/page404.php";
                             }
                         } else {
                             include "homepage.php";

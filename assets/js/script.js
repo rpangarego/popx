@@ -44,8 +44,8 @@ $(document).ready(function() {
             type: 'post',
             data: $(this).serialize() + '&image_url='+imageUrl,
             success: function(data) {
-                var message = data.split('_')[0];
-                var alertStyle = data.split('_')[1];
+                var message = data.split('#')[0];
+                var alertStyle = data.split('#')[1];
 
                 loadData();
                 showAlert(message,alertStyle);
@@ -70,8 +70,8 @@ $(document).ready(function() {
                     token: token
                 },
                 success: function(data) {
-                    var message = data.split('_')[0];
-                    var alertStyle = data.split('_')[1];
+                    var message = data.split('#')[0];
+                    var alertStyle = data.split('#')[1];
 
                     loadData();
                     showAlert(message,alertStyle);
@@ -83,7 +83,7 @@ $(document).ready(function() {
     // preview report
     $("#preview-report").click(function(e){
         e.preventDefault();
-
+console.log('preview!')
         var student = $("#student").val();
         var gender = $("#gender").val();
         var major = $("#major").val();
@@ -101,7 +101,80 @@ $(document).ready(function() {
             }
         });
     });
+
+    // update profile
+    $("#update-profile-form").submit(function(e){
+        e.preventDefault();
+
+        var username    = $("#username").val();
+        if (!username.length) {
+            showAlert("Username cannot be empty!","danger");
+            return false;
+        }
+
+        $.ajax({
+            url: "actions.php?action=profile_update",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function(res) {
+                var message = res.split('#')[0];
+                var alertStyle = res.split('#')[1];
+
+                showAlert(message,alertStyle);
+            }
+        });
+    });
+
+    // change password
+    $("#change-password-form").submit(function(e){
+        e.preventDefault();
+
+        var oldPassword = $("#password_old").val();
+        var newPassword = $("#password_new").val();
+        var conPassword = $("#password_conf").val();
+
+        if (oldPassword.length && newPassword.length && conPassword.length) {
+            $.ajax({
+                url: "actions.php?action=change_password",
+                type: "POST",
+                data: $(this).serialize(),
+                success: function(res) {
+                    var message = res.split('#')[0];
+                    var alertStyle = res.split('#')[1];
+
+                    $("#password_old").blur();
+                    $("#password_new").blur();
+                    $("#password_conf").blur();
+
+                    $("#password_old").val('');
+                    $("#password_new").val('');
+                    $("#password_conf").val('');
+
+                    showAlert(message,alertStyle);
+                    disabledButton(true,'update-pass-btn');
+                }
+            });
+        } else {
+            showAlert("All fields must be filled!", "danger");
+        }
+    });
+
+    $("#password_old").keyup(checkPasswordInput);
+    $("#password_new").keyup(checkPasswordInput);
+    $("#password_conf").keyup(checkPasswordInput);
 });
+
+function checkPasswordInput(e){
+    var oldPassword = $("#password_old").val();
+    var newPassword = $("#password_new").val();
+    var conPassword = $("#password_conf").val();
+
+    if (oldPassword.length && newPassword.length && conPassword.length) {
+        disabledButton(false, "update-pass-btn");
+    } else {
+        disabledButton(true, "update-pass-btn");
+    }
+}
 
 function login() {
     usernameTxt = document.getElementById('username');
@@ -232,29 +305,28 @@ function uploadFileImage(){
     return '';    
 }
 
-function disabledButton(state){ //status (true:show / false:hide)
+function disabledButton(state, element='btn-login'){ //status (true:show / false:hide)
+    var element = document.getElementById(element);
+
     if (state) {
-        btnLogin.classList.add('disabled');
-        btnLogin.setAttribute('disabled','true');
+        element.classList.add('disabled');
+        element.setAttribute('disabled','true');
     } else {
-        btnLogin.classList.remove('disabled');
-        btnLogin.removeAttribute('disabled');
+        element.classList.remove('disabled');
+        element.removeAttribute('disabled');
     }
 }
 
 function showAlert(message, style='info'){
-    var alert = `<div class="alert" style="width:50%; background-color: pink; padding: 10px; margin-bottom: 2rem; border-radius: 6px; ">${message}</div>`;
-    var bootstrapAlert = `<div class="alert alert-${style} alert-dismissible fade show" role="alert">
+    var alert = `<div class="alert alert-${style} alert-dismissible fade show" role="alert">
     ${message}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>`;
-    $('.alert-container').html(bootstrapAlert);
-    // document.querySelector('.alert-container>.alert').addEventListener('click', clearAlert);
+    $('.alert-container').html(alert);
 }
 
 function clearAlert(){
     $('.alert-container').empty();
 }
-

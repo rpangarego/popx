@@ -6,8 +6,6 @@ Upcoming update:
 	- Upload image form 							= DONE
 	- Update view UI 								= DONE
 	- Login view + logic w/ ajax checking (3 role) 	= DONE
-	- Review code & refactoring 					= 
-
-	: login 
-		- 3 role (admin, headmaster, student)
+	- 3 role (admin, headmaster, student)			= DONE
+	- Review code & refactoring 					= ON PROGRESS
 

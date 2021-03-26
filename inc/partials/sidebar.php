@@ -14,30 +14,40 @@
         <span class="nav-link-text">Posts</span>
         </a>
     </li>
+
+    <?php if ($_SESSION['status'] == 1) { ?> <!-- 1 = admin | 2 = headmaster | 3 = students -->
     <li class="nav-item">
         <a class="nav-link" href="index?m=foods">
         <i class="ni ni-pin-3"></i>
         <span class="nav-link-text">Foods</span>
         </a>
     </li>
+    <?php } ?>
+    
     <li class="nav-item">
         <a class="nav-link" href="index?m=students">
         <i class="ni ni-single-02"></i>
         <span class="nav-link-text">Students</span>
         </a>
     </li>
+
+    <?php if ($_SESSION['status']==1 || $_SESSION['status']==2 ) { ?> <!-- 1 = admin | 2 = headmaster | 3 = students -->
     <li class="nav-item">
         <a class="nav-link" href="index?m=majors">
         <i class="ni ni-key-25"></i>
         <span class="nav-link-text">Majors</span>
         </a>
     </li>
+    <?php } ?>
+
+    <?php if ($_SESSION['status'] == 1) { ?> <!-- 1 = admin | 2 = headmaster | 3 = students -->
     <li class="nav-item">
         <a class="nav-link" href="index?m=about">
         <i class="ni ni-air-baloon"></i>
         <span class="nav-link-text">About</span>
         </a>
     </li>
+    <?php } ?>
     </ul>
     <!-- Divider -->
     <hr class="my-3">

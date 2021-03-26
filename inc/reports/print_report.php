@@ -1,4 +1,4 @@
-<?php require 'inc/functions.php';
+<?php require '../functions.php';
     if (!isset($_SESSION['userid'])) redirect_js('login');
 ?>
 
@@ -10,10 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generate Report</title>
 
-  <link rel="stylesheet" href="assets/css/nucleo.css" type="text/css">
-  <link rel="stylesheet" href="assets/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="../../assets/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="../../assets/css/all.min.css" type="text/css">
   <!-- Argon CSS -->
-  <link rel="stylesheet" href="assets/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="../../assets/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
 <body>
@@ -76,7 +76,7 @@
         </div>
     </div>
 
-    <script src="./assets/js/jquery-3.6.0.js"></script>
-    <script src="./assets/js/script.js"></script>
+    <script src="../../assets/js/jquery-3.6.0.js"></script>
+    <script src="../../assets/js/script.js"></script>
 </body>
 </html>

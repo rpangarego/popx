@@ -27,7 +27,7 @@ switch ($_GET['action']){
         } else {
             echo false;
         }
-    break;
+        break;
 
     // LOGOUT
     case 'logout':
@@ -55,12 +55,36 @@ switch ($_GET['action']){
         if (!empty($fileupload)){
             move_uploaded_file($_FILES["fileupload"]["tmp_name"], $temp.$filename); // Menyimpan file
         
-            echo "File uploaded successfully_info"; //<message>_<alert-style>
+            echo "File uploaded successfully#info"; //<message>_<alert-style>
         } else {
-            echo "Failed to upload file_danger";
+            echo "Failed to upload file#danger";
         }
-    break;
+        break;
 
+    // CHANGE-UPDATE PASSWORD
+    case 'change_password':
+        
+        $old_password   = $_POST['password_old'];
+        $new_password   = $_POST['password_new'];
+        $con_password   = $_POST['password_conf'];
+
+        $user = $db->get_row("SELECT * FROM users WHERE id='$_SESSION[userid]' AND password='$old_password'");
+        
+        if ($new_password == $con_password) {
+            if ($user) {
+                $query = $db->query("UPDATE users SET password='$new_password' WHERE id='$_SESSION[userid]'");
+                echo "Password updated!#info";
+                exit;
+            } else {
+                echo "Password wrong!#danger";
+                exit;
+            }
+        } else {
+            echo "Password not match!#danger";
+            exit;
+        }
+
+        break;
 }
 
 
@@ -79,9 +103,9 @@ if ($action_access) {
                     $query = $db->query("INSERT INTO posts(id, title, description, writer, created_at) VALUES (NULL,'$title','$description','$writer',current_timestamp())");
     
                     if ($query) {
-                        echo "Data saved successfully!_info";
+                        echo "Data saved successfully!#info";
                     } else {
-                        echo "Data failed to save. Details: ".$query."_danger";
+                        echo "Data failed to save. Details: ".$query."#danger";
                     }
                     break;
                 
@@ -89,9 +113,9 @@ if ($action_access) {
                     $query = $db->query("UPDATE posts SET title='$title', description='$description', writer='$writer' WHERE id='$id'");
     
                     if ($query) {
-                        echo "Data updated successfully!_info";
+                        echo "Data updated successfully!#info";
                     } else {
-                        echo "Failed to update data. Details:".$query."_danger";
+                        echo "Failed to update data. Details:".$query."#danger";
                     }
                     break;
     
@@ -99,9 +123,9 @@ if ($action_access) {
                     $query = $db->query("DELETE FROM posts WHERE id='$id'");
             
                     if ($query) {
-                        echo "Data deleted!_info";
+                        echo "Data deleted!#info";
                     } else {
-                        echo "Failed to delete data. Details:".$query."_danger";
+                        echo "Failed to delete data. Details:".$query."#danger";
                     }
                     break;
             }
@@ -119,9 +143,9 @@ if ($action_access) {
                     $query = $db->query("INSERT INTO foods(id, menu, category, price) VALUES (NULL,'$menu','$category',$price)");
     
                     if ($query) {
-                        echo "Data saved successfully!_info";
+                        echo "Data saved successfully!#info";
                     } else {
-                        echo "Data failed to save. Details: ".$query."_danger";
+                        echo "Data failed to save. Details: ".$query."#danger";
                     }
                     break;
                 
@@ -129,9 +153,9 @@ if ($action_access) {
                     $query = $db->query("UPDATE foods SET menu='$menu', category='$category', price='$price' WHERE id='$id'");
     
                     if ($query) {
-                        echo "Data updated successfully!_info";
+                        echo "Data updated successfully!#info";
                     } else {
-                        echo "Failed to update data. Details:".$query."_danger";
+                        echo "Failed to update data. Details:".$query."#danger";
                     }
                     break;
     
@@ -139,9 +163,9 @@ if ($action_access) {
                     $query = $db->query("DELETE FROM foods WHERE id='$id'");
             
                     if ($query) {
-                        echo "Data deleted!_info";
+                        echo "Data deleted!#info";
                     } else {
-                        echo "Failed to delete data. Details:".$query."_danger";
+                        echo "Failed to delete data. Details:".$query."#danger";
                     }
                     break;
             }
@@ -158,9 +182,9 @@ if ($action_access) {
                     $query = $db->query("INSERT INTO majors(id, major_code, major) VALUES (NULL,'$major_code','$major')");
     
                     if ($query) {
-                        echo "Data saved successfully!_info";
+                        echo "Data saved successfully!#info";
                     } else {
-                        echo "Data failed to save. Details: ".$query."_danger";
+                        echo "Data failed to save. Details: ".$query."#danger";
                     }
                     break;
     
@@ -168,9 +192,9 @@ if ($action_access) {
                     $query = $db->query("UPDATE majors SET major_code='$major_code', major='$major' WHERE id='$id'");
     
                     if ($query) {
-                        echo "Data updated successfully!_info";
+                        echo "Data updated successfully!#info";
                     } else {
-                        echo "Failed to update data. Details:".$query."_danger";
+                        echo "Failed to update data. Details:".$query."#danger";
                     }
                     break;
     
@@ -178,9 +202,9 @@ if ($action_access) {
                     $query = $db->query("DELETE FROM majors WHERE id='$id'");
             
                     if ($query) {
-                        echo "Data deleted!_info";
+                        echo "Data deleted!#info";
                     } else {
-                        echo "Failed to delete data. Details:".$query."_danger";
+                        echo "Failed to delete data. Details:".$query."#danger";
                     }
                     break;
             }
@@ -204,9 +228,9 @@ if ($action_access) {
                     $query = $db->query("INSERT INTO students(id, full_name, birth_date, birth_place, gender, city, major_id, food_id, image_url, created_at) VALUES (NULL,'$full_name','$birth_date','$birth_place','$gender','$city','$major_id','$food_id','$image_url',current_timestamp())");
     
                     if ($query) {
-                        echo "Data saved successfully!_info";
+                        echo "Data saved successfully!#info";
                     } else {
-                        echo "Failed to save data. Details: ".$query."_danger";
+                        echo "Failed to save data. Details: ".$query."#danger";
                     }
                     break;
                 
@@ -214,24 +238,40 @@ if ($action_access) {
                     $query = $db->query("UPDATE students SET full_name='$full_name', birth_date='$birth_date', birth_place='$birth_place', gender='$gender', city='$city', major_id='$major_id', food_id='$food_id', image_url='$image_url' WHERE id='$id'");
     
                     if ($query) {
-                        echo "Data updated successfully!_info";
+                        echo "Data updated successfully!#info";
                     } else {
-                        echo "Failed to update data. Details:".$query."_danger";
+                        echo "Failed to update data. Details:".$query."#danger";
                     }
                     break;
             
                 case 'hapus':
                     $query = $db->query("DELETE FROM students WHERE id='$id'");
                     if ($query) {
-                        echo "Data deleted!_info";
+                        echo "Data deleted!#info";
                     } else {
-                        echo "Failed to delete data. Details:".$query."_danger";
+                        echo "Failed to delete data. Details:".$query."#danger";
                     }
                     break;
             }
         break;
+
+        case 'profile':
+            $id         = trim($_POST['userid']);
+            $username   = trim($_POST['username']);
+            
+            if ($_action == 'update') {
+                $query = $db->query("UPDATE users SET username='$username' WHERE id='$id'");
+                $_SESSION['username'] = $username;
+
+                if ($query) {
+                    echo "Profile updated!#info";
+                } else {
+                    echo "Failed to update data. Details:".$query."#danger";
+                }
+            }
+            break;
     }
 } else {
-    echo "Failed to execute action! Invalid token._danger";
+    echo "Failed to execute action! Invalid token.#danger";
 }
 ?>
