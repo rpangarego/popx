@@ -1,5 +1,9 @@
-<button id="add-button" class="btn btn-primary">New Data</button>
-<button id="print-report" class="btn btn-secondary" onclick="window.open('print_report');">Print</button>
+<?php 
+require "../../inc/functions.php";
+if ($_SESSION['status']!=3) { ?> <!-- 1 = admin | 2 = headmaster | 3 = students -->
+    <button id="add-button" class="btn btn-primary">New Data</button>
+    <button id="print-report" class="btn btn-secondary" onclick="window.open('print_report');">Print</button>
+<?php } ?>
 
 <br>
 <br>
@@ -13,13 +17,17 @@
             <th>City</th>
             <th>Major</th>
             <th>Fav Menu</th>
-            <th>Actions</th>
+
+            <?php 
+            if ($_SESSION['status']!=3) { ?> <!-- 1 = admin | 2 = headmaster | 3 = students -->
+                <th>Actions</th>
+            <?php } ?>
+            
         </tr>
     </thead>
     <tbody>
         <?php
 
-   require "../../inc/functions.php";
    $no=1;
    $students = $db->get_results("SELECT st.*, mj.major, fd.menu, fd.category FROM students st LEFT JOIN majors mj ON mj.id=st.major_id LEFT JOIN foods fd ON fd.id=st.food_id ORDER BY created_at DESC");
 
@@ -33,10 +41,14 @@
             <td><?= $student->city; ?></td>
             <td><?= $student->major; ?></td>
             <td><?= "[$student->category] $student->menu"; ?></td>
-            <td>
-                <button id="edit-button" data-id="<?= $student->id; ?>">Edit</button>
-                <button id="delete-button" data-id="<?= $student->id; ?>" data-action="students_hapus" data-token="<?= $_SESSION['token'] ?>">Delete</button>
-            </td>
+
+            <?php 
+            if ($_SESSION['status']!=3) { ?> <!-- 1 = admin | 2 = headmaster | 3 = students -->
+                <td>
+                    <button id="edit-button" data-id="<?= $student->id; ?>">Edit</button>
+                    <button id="delete-button" data-id="<?= $student->id; ?>" data-action="students_hapus" data-token="<?= $_SESSION['token'] ?>">Delete</button>
+                </td>
+            <?php } ?>
         </tr>
 
     <?php endforeach;

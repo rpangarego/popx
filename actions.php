@@ -19,7 +19,7 @@ switch ($_GET['action']){
             $_SESSION['userid']     = $result->id;
             $_SESSION['username']   = $result->username;
             $_SESSION['password']   = $result->password;
-            $_SESSION['status']     = $result->status;
+            $_SESSION['status']     = $result->status; // 1 = admin | 2 = headmaster | 3 = students
             $_SESSION['token']      = generate_token();
 
             // true = login successfully (redirect to index)

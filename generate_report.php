@@ -5,9 +5,9 @@
 
     $where = [];
 
-    if (isset($_POST["students"])) {
-        if ($_POST["students"] != 'all') {
-            $where_student .= "st.id=".$_POST["students"];
+    if (isset($_POST["student"])) {
+        if ($_POST["student"] != 'all') {
+            $where_student .= "st.id=".$_POST["student"];
             array_push($where, $where_student);
         }
     }

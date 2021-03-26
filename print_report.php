@@ -8,7 +8,7 @@
     <tr>
         <td>Student</td><td>:</td>
         <td>
-            <select name="students" id="students">
+            <select name="student" id="student">
                 <option value="all">All</option>
                 <?= getStudentOptions() ?>
             </select>
@@ -34,7 +34,18 @@
         </td>
     </tr>
 </table>
+<br>
+
+    <div style="display:flex; justify-content:center; margin: 0 auto;">
+        <button class="btn btn-secondary" onclick="window.close()">Close</button>
+        <button type="button" id="preview-report">Preview</button>
+        <button type="submit" id="print-report">Print</button>
+    </div>
+</form>
 
 <br>
-<button type="submit" id="print-report" class="btn btn-secondary">Print</button>
-</form>
+<hr>
+<div id="preview-data"></div>
+
+<script src="./js/jquery-3.6.0.js"></script>
+<script src="./js/script.js"></script>

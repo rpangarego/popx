@@ -6,13 +6,12 @@ Upcoming update:
 	- Upload image form 							= DONE
 	- Update view UI 								= DONE
 	- Login view + logic w/ ajax checking (3 role) 	= DONE
-	- Review code & refactoring 					= ON PROGRESS
 
-	: login 
-		- 3 role (admin, headmaster, student)
-			admin		: have all access to the app
-			headmaster  : + :: posts, students and majors
-						  - :: foods and about
-			student		: + :: students (read only) and posts (that user only)
-						  - :: foods, majors, about
+	- 3 role (admin, headmaster, student) 			= DONE
+		admin		: have all access to the app
+		headmaster  : + :: posts, students and majors
+					  - :: foods and about
+		student		: + :: students (read only) and posts (that user only)
+					  - :: foods, majors, about
 			
+	- Review code & refactoring 					= ON PROGRESS

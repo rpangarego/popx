@@ -18,10 +18,21 @@
             <div class="links">
                 <a href="index">Home</a>
                 <a href="index?m=posts">Posts</a>
-                <a href="index?m=foods">Foods</a>
+
+                <?php if ($_SESSION['status']==1) { ?> <!-- 1 = admin | 2 = headmaster | 3 = students -->
+                    <a href="index?m=foods">Foods</a>
+                <?php } ?>
+                
                 <a href="index?m=students">Students</a>
-                <a href="index?m=majors">Majors</a>
-                <a href="index?m=about">About</a>
+
+                <?php if ($_SESSION['status']==1 || $_SESSION['status']==2 ) { ?> <!-- 1 = admin | 2 = headmaster | 3 = students -->
+                    <a href="index?m=majors">Majors</a>
+                <?php } ?>
+
+                <?php if ($_SESSION['status']==1) { ?> <!-- 1 = admin | 2 = headmaster | 3 = students -->
+                    <a href="index?m=about">About</a>
+                <?php } ?>
+                
                 <a href="actions?action=logout">Logout (<?= ucwords($_SESSION['username']) ?>)</a>
             </div>
 
