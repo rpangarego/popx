@@ -117,7 +117,7 @@
                                 include "inc/partials/page404.php";
                             }
                         } else {
-                            include "homepage.php";
+                            include "inc/partials/homepage.php";
                         }
                     ?>
                 </div>

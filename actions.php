@@ -5,7 +5,7 @@ $module     = explode('_', $_GET['action'])[0];
 $_action    = explode('_', $_GET['action'])[1];
 $action_access = check_token($_POST['token']);
 
-// ACTION LOGIN, LOGOUT & UPLOAD IMAGE
+// ACTION LOGIN, LOGOUT, UPLOAD IMAGE, CHANGE PASSWORD, UPDATE PROFILE
 switch ($_GET['action']){
 
     // LOGIN
@@ -63,27 +63,52 @@ switch ($_GET['action']){
 
     // CHANGE-UPDATE PASSWORD
     case 'change_password':
-        
-        $old_password   = $_POST['password_old'];
-        $new_password   = $_POST['password_new'];
-        $con_password   = $_POST['password_conf'];
+        if ($action_access) {
+            $old_password   = $_POST['password_old'];
+            $new_password   = $_POST['password_new'];
+            $con_password   = $_POST['password_conf'];
 
-        $user = $db->get_row("SELECT * FROM users WHERE id='$_SESSION[userid]' AND password='$old_password'");
-        
-        if ($new_password == $con_password) {
-            if ($user) {
-                $query = $db->query("UPDATE users SET password='$new_password' WHERE id='$_SESSION[userid]'");
-                echo "Password updated!#info";
-                exit;
+            $user = $db->get_row("SELECT * FROM users WHERE id='$_SESSION[userid]' AND password='$old_password'");
+            
+            if ($new_password == $con_password) {
+                if ($user) {
+                    $query = $db->query("UPDATE users SET password='$new_password' WHERE id='$_SESSION[userid]'");
+                    echo "Password updated!#info";
+                    exit;
+                } else {
+                    echo "Password wrong!#danger";
+                    exit;
+                }
             } else {
-                echo "Password wrong!#danger";
+                echo "Password not match!#danger";
                 exit;
             }
         } else {
-            echo "Password not match!#danger";
+            echo "Failed to execute action! Invalid token.#danger";
             exit;
         }
+        break;
+    
+    // UPDATE MY PROFILE DATA
+    case 'profile_update':
+        if ($action_access) {
+            $id         = trim($_POST['userid']);
+            $username   = trim($_POST['username']);
+            
+            $query = $db->query("UPDATE users SET username='$username' WHERE id='$id'");
+            $_SESSION['username'] = $username;
 
+            if ($query) {
+                echo "Profile updated!#info";
+                exit;
+            } else {
+                echo "Failed to update data. Details:".$query."#danger";
+                exit;
+            }
+        } else {
+            echo "Failed to execute action! Invalid token.#danger";
+            exit;
+        }
         break;
 }
 
@@ -254,22 +279,6 @@ if ($action_access) {
                     break;
             }
         break;
-
-        case 'profile':
-            $id         = trim($_POST['userid']);
-            $username   = trim($_POST['username']);
-            
-            if ($_action == 'update') {
-                $query = $db->query("UPDATE users SET username='$username' WHERE id='$id'");
-                $_SESSION['username'] = $username;
-
-                if ($query) {
-                    echo "Profile updated!#info";
-                } else {
-                    echo "Failed to update data. Details:".$query."#danger";
-                }
-            }
-            break;
     }
 } else {
     echo "Failed to execute action! Invalid token.#danger";

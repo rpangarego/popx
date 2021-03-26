@@ -2,7 +2,6 @@ var fileImage;
 var usernameTxt;
 var passwordTxt;
 var loginForm;
-var btnLogin;
 
 $(document).ready(function() {
     pathLink = window.location.pathname.split('/');
@@ -83,7 +82,7 @@ $(document).ready(function() {
     // preview report
     $("#preview-report").click(function(e){
         e.preventDefault();
-console.log('preview!')
+
         var student = $("#student").val();
         var gender = $("#gender").val();
         var major = $("#major").val();
@@ -164,6 +163,8 @@ console.log('preview!')
     $("#password_conf").keyup(checkPasswordInput);
 });
 
+
+// FUNCTIONS
 function checkPasswordInput(e){
     var oldPassword = $("#password_old").val();
     var newPassword = $("#password_new").val();
@@ -180,7 +181,6 @@ function login() {
     usernameTxt = document.getElementById('username');
     passwordTxt = document.getElementById('password');
     loginForm   = document.getElementById('login-form');
-    btnLogin    = document.getElementById('btn-login');
 
     loginForm.addEventListener('submit', (e)=>{
         e.preventDefault();
