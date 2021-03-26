@@ -11,40 +11,42 @@
     $title = (!empty($result->title)) ? $result->title : '';
     $description = (!empty($result->description)) ? $result->description : '';
     $writer = (!empty($result->writer)) ? $result->writer : '';
+
+    $form_title = ($_GET['form_status'] == 'posts_edit') ? 'EDIT POST' : 'ADD POST';
+    echo "<h3 class='text-center'>$form_title</h3>";
 ?>
 
-<form method="POST" id="form" data-form-status='<?= $_GET['form_status'] ?>'>
-    <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
-    <table>
-        <tr>
-            <td>Title</td>
-            <td>
-                <input type="hidden" name="id" id="id" required="" value="<?= $id; ?>" />
-                <input type="text" name="title" id="title" required="" value="<?= $title; ?>" />
-            </td>
-        </tr>
-        <tr>
-            <td>Description</td>
-            <td>
-                <textarea name="description" id="description" required=""><?= $description; ?></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td>Writer</td>
-            <td>
-                <select name="writer" id="writer" required="">
-                    <option value="Popcorn" <?= ($writer=='Popcorn') ? 'selected' : '' ?> >Popcorn</option>
-                    <option value="Ramen" <?= ($writer=='Ramen') ? 'selected' : '' ?> >Ramen</option>
-                    <option value="Sushi" <?= ($writer=='Sushi') ? 'selected' : '' ?> >Sushi</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <button type="submit" name="simpan" id="simpan" class="btn btn-primary">Save</button>
-                <button type="button" id="cancel-button" class="btn btn-secondary" >Cancel</button>
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <form method="POST" id="form" data-form-status='<?= $_GET['form_status'] ?>'>
+            <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="hidden" name="id" id="id" class="form-control" required value="<?= $id; ?>" />
+                        <input type="text" name="title" id="title" class="form-control" required value="<?= $title; ?>" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description" class="form-control" required><?= $description; ?></textarea>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="writer">Writer</label>
+                        <select name="writer" id="writer" class="custom-select" required>
+                            <option value="Popcorn" <?= ($writer=='Popcorn') ? 'selected' : '' ?> >Popcorn</option>
+                            <option value="Ramen" <?= ($writer=='Ramen') ? 'selected' : '' ?> >Ramen</option>
+                            <option value="Sushi" <?= ($writer=='Sushi') ? 'selected' : '' ?> >Sushi</option>
+                        </select>
+                    </div>
+                   
+                    <div class="form-buttons d-flex justify-content-end">
+                        <button type="button" id="cancel-button" class="btn btn-secondary" >Cancel</button>
+                        <button type="submit" name="simpan" id="simpan" class="btn btn-primary">Save</button>
+                    </div>
+            </table>
+        </form>
+    </div>
+</div>
+
