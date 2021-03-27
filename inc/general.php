@@ -90,7 +90,7 @@ function check_token($user_token){
 function set_last_activity(){
   if (isset($_SESSION['userid'])) {
     $_SESSION['LAST_ACTIVITY'] = date("Y-m-d H:i:s");
-    $_SESSION['EXPIRED_ACCESS'] = date("Y-m-d H:i:s", strtotime("+1 minutes"));
+    $_SESSION['EXPIRED_ACCESS'] = date("Y-m-d H:i:s", strtotime("+30 minutes"));
     return true;
   }
   return false;
