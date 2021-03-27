@@ -80,9 +80,33 @@ function generate_token(){
 }
 
 function check_token($user_token){
-  if ($_SESSION['token']==$user_token) {
+  if ($_SESSION["token"]==$user_token) {
     return true;
   } else {
     return false;
   }
+}
+
+function set_last_activity(){
+  if (isset($_SESSION['userid'])) {
+    $_SESSION['LAST_ACTIVITY'] = date("Y-m-d H:i:s");
+    $_SESSION['EXPIRED_ACCESS'] = date("Y-m-d H:i:s", strtotime("+1 minutes"));
+    return true;
+  }
+  return false;
+}
+
+function check_last_activity(){
+  $now = date("Y-m-d H:i:s");
+
+  if (isset($_SESSION['LAST_ACTIVITY'])) {
+    if ($now > $_SESSION['EXPIRED_ACCESS']) {
+      session_unset();
+      session_destroy();
+      redirect_js('login');
+      exit;
+    }
+  }
+
+  set_last_activity();
 }

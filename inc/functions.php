@@ -12,6 +12,8 @@ include 'db.php';
 $db = new DB($config['server'], $config['username'], $config['password'], $config['database_name']);
 include 'general.php';
 
+check_last_activity();
+
 function getMonthInd($month){
     switch ($month) {
         case 1:

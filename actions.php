@@ -31,11 +31,7 @@ switch ($_GET['action']){
 
     // LOGOUT
     case 'logout':
-        $_SESSION['userid']     = null;
-        $_SESSION['username']   = null;
-        $_SESSION['password']   = null;
-        $_SESSION['status']     = null;
-        $_SESSION['token']      = null;
+        session_unset();
         session_destroy();
         
         redirect_js('login');
